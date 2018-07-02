@@ -67,7 +67,7 @@ class Dog
     DB[:conn].execute(sql, name).map{|row| self.new_from_db(row)}.first
   end
 
-  def self.find_or_create_by(name:, album:)
+  def self.find_or_create_by(name:, breed:)
     song = DB[:conn].execute("SELECT * FROM songs WHERE name = ? AND album = ?", name, album)
     if !song.empty?
       song_data = song[0]
@@ -76,7 +76,7 @@ class Dog
       song = self.create(name: name, album: album)
     end
     song
-  end 
+  end
 
 
 end
